@@ -1,0 +1,2 @@
+# django_school
+django_school_test_project
