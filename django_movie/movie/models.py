@@ -90,7 +90,7 @@ class MovieShots(models.Model):
     """Movie Shots"""
     title = models.CharField("Title", max_length=100)
     description = models.TextField("Description")
-    iamge = models.ImageField("Image", upload_to="movie_shots/")
+    image = models.ImageField("Image", upload_to="movie_shots/")
     movie = models.ForeignKey(
         Movie, verbose_name="Movie", on_delete=models.CASCADE)
 
@@ -148,3 +148,6 @@ class Reviews(models.Model):
     class Meta:
         verbose_name = "Review"
         verbose_name_plural = "Reviews"
+
+
+
