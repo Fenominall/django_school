@@ -9,6 +9,7 @@ django-filter = "*"
 pillow = "*"
 pylint-django = "*"
 bcrypt = "*"
+django-ckeditor = "*"
 
 [dev-packages]
 autopep8 = "*"
