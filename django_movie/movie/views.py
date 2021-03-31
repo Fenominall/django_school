@@ -1,12 +1,24 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, UpdateView, DetailView
-from .models import Movie, Category, Actor
+from .models import Movie, Category, Actor, Genre
 from django.views.generic.base import View
 from .forms import ReviewForms
+from django.db.models import Q
 # Create your views here.
 
 
-class MovieView(ListView):
+class GenreYear():
+    """Genres and Years of the movies"""
+    def get_genres(self):
+        return Genre.objects.all()
+
+    
+    def get_years(self):
+        return Movie.objects.filter(draft=False).values("year")
+
+
+
+class MovieView(GenreYear, ListView):
     """Movies List"""
     model = Movie
     queryset = Movie.objects.filter(draft=False)
@@ -17,7 +29,7 @@ class MovieView(ListView):
     #     return render(request, "movie/movies.html", {"movie_list": movies})
 
 
-class MovieDetailView(DetailView):
+class MovieDetailView(GenreYear, DetailView):
     """Movie Detail View"""
     model = Movie
     slug_field = "url"
@@ -47,8 +59,19 @@ class AddReview(View):
 
 
 
-class ActorView(DetailView):
+class ActorView(GenreYear, DetailView):
     """Show the info about an actor"""
     model = Actor
     template_name = "movie/actor.html"
     slug_field = "name"
+
+
+
+class FilterMoviesView(GenreYear, ListView):
+    """Movies filters"""
+    def get_queryset(self):
+        queryset = Movie.objects.filter(
+            Q(year__in=self.request.GET.getlist("year")) | 
+            Q(genres__in=self.request.GET.getlist("genre")))
+        return queryset
+    
