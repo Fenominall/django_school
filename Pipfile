@@ -10,6 +10,7 @@ pillow = "*"
 pylint-django = "*"
 bcrypt = "*"
 django-ckeditor = "*"
+django-recaptcha3 = "*"
 
 [dev-packages]
 autopep8 = "*"
