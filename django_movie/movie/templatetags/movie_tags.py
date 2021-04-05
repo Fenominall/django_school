@@ -4,6 +4,7 @@ from movie.models import Category, Movie
 
 register = template.Library()
 
+
 @register.simple_tag()
 def get_category():
     """Get all Categories"""
