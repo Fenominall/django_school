@@ -3,6 +3,9 @@ from django.views.generic import ListView, DetailView, UpdateView, DetailView
 from .models import Movie, Category, Actor, Genre, RatingStar, Rating
 from django.views.generic.base import View
 from .forms import ReviewForms, RatingForm
+from .models import Movie, Category, Actor, Genre
+from django.views.generic.base import View
+from .forms import ReviewForms
 from django.db.models import Q
 # Create your views here.
 
@@ -13,8 +16,13 @@ class GenreYear():
     def get_genres(self):
         return Genre.objects.all()
 
+    def get_genres(self):
+        return Genre.objects.all()
+
+    
     def get_years(self):
         return Movie.objects.filter(draft=False).values("year")
+
 
 
 class MovieView(GenreYear, ListView):
@@ -50,6 +58,7 @@ class AddReview(View):
         return redirect(movie.get_absolute_url())
 
 
+
 class ActorView(GenreYear, DetailView):
     """Show the info about an actor"""
     model = Actor
@@ -59,7 +68,7 @@ class ActorView(GenreYear, DetailView):
 
 class FilterMoviesView(GenreYear, ListView):
     """Filter Movies"""
-    paginate_by = 2
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = Movie.objects.filter(
@@ -102,7 +111,7 @@ class AddStarRating(View):
 class Search(ListView):
     """Search Film"""
     
-    paginate_by = 1
+    paginate_by = 3
     
     def get_queryset(self):
         return Movie.objects.filter(title__icontains=self.request.GET.get("q"))
@@ -112,3 +121,12 @@ class Search(ListView):
         context = super().get_context_data(*args, **kwargs)
         context["q"] = f'q={self.request.GET.get("q")}&'
         return context
+
+class FilterMoviesView(GenreYear, ListView):
+    """Movies filters"""
+    def get_queryset(self):
+        queryset = Movie.objects.filter(
+            Q(year__in=self.request.GET.getlist("year")) | 
+            Q(genres__in=self.request.GET.getlist("genre")))
+        return queryset
+    
