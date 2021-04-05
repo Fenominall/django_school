@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
     'ckeditor',
     'ckeditor_uploader',
     'movie.apps.MovieConfig',
     'snowpenguin.django.recaptcha3',
+    'contact.apps.ContactConfig',
 
 ]
 
@@ -53,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'django_movie.urls'
@@ -220,3 +224,8 @@ RECAPTCHA_LANGUAGE = 'en' # for auto detection language, remove this from your s
 # If you require reCaptcha to be loaded from somewhere other than https://google.com
 # (e.g. to bypass firewall restrictions), you can specify what proxy to use.
 # RECAPTCHA_FRONTEND_PROXY_HOST = 'https://recaptcha.net'
+
+
+
+# SITE ID
+SITE_ID = 1
