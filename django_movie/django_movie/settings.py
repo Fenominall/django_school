@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'movie.apps.MovieConfig',
+    'snowpenguin.django.recaptcha3',
 
 ]
 
@@ -209,3 +210,13 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
+
+RECAPTCHA_PUBLIC_KEY = "6Ld9UJ0aAAAAANKPHxK_x0FMY1TRzUNQF5pYPMJ0"
+RECAPTCHA_PRIVATE_KEY = "6Ld9UJ0aAAAAAAHCLQaT3BLG-rsj0dgMJfmlEn9P"
+RECAPTCHA_DEFAULT_ACTION = 'generic'
+RECAPTCHA_SCORE_THRESHOLD = 0.5
+RECAPTCHA_LANGUAGE = 'en' # for auto detection language, remove this from your settings
+# If you require reCaptcha to be loaded from somewhere other than https://google.com
+# (e.g. to bypass firewall restrictions), you can specify what proxy to use.
+# RECAPTCHA_FRONTEND_PROXY_HOST = 'https://recaptcha.net'

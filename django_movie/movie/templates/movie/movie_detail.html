@@ -152,23 +152,20 @@
                             <label for="contactcomment" class="editContent">
                                 Your comment *
                             </label>
-                            <textarea class="form-control border" rows="5" name="text"
-                                      id="contactcomment" required=""></textarea>
+                            {{ form.text }}
                         </div>
                         <div class="d-sm-flex">
                             <div class="col-sm-6 form-group p-0 editContent">
                                 <label for="contactusername" class="editContent">
                                     Name *
                                 </label>
-                                <input type="text" class="form-control border" name="name"
-                                       id="contactusername" required="">
+                                {{ form.name }}
                             </div>
                             <div class="col-sm-6 form-group ml-sm-3 editContent">
                                 <label for="contactemail" class="editContent">
                                     Email *
                                 </label>
-                                <input type="email" class="form-control border" name="email"
-                                       id="contactemail" required="">
+                                {{ form.email }}
                             </div>
                         </div>
                         <button type="submit"
