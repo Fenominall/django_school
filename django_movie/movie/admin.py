@@ -12,20 +12,12 @@ from .models import Category, Movie, MovieShots, Actor, Rating, RatingStar, Revi
 class MovieAdminForm(forms.ModelForm):
     """Form with ckeditor widget"""
     description_en = forms.CharField(label="Description", widget=CKEditorUploadingWidget())
-    description_ru = forms.CharField(label="Описание", widget=CKEditorUploadingWidget())
+    description_ru = forms.CharField(label="Description", widget=CKEditorUploadingWidget())
     
     class Meta:
         model = Movie
         fields = "__all__"
 
-
-
-class MovieAdminForm(forms.ModelForm):
-    description = forms.CharField(label="Description", widget=CKEditorUploadingWidget())
-
-    class Meta:
-        model = Movie
-        fields = '__all__'
 
 
 # Register your models here.

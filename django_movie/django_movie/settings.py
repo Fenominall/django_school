@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'movie.apps.MovieConfig',
     'contact',
     'snowpenguin.django.recaptcha3',
+    'allauth',
+    'allauth.account',
 
 ]
 
@@ -93,6 +95,12 @@ DATABASES = {
 }
 
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -115,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -124,6 +132,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+LOGIN_REDIRECT_URL = "/"
 
 
 gettext = lambda s: s
